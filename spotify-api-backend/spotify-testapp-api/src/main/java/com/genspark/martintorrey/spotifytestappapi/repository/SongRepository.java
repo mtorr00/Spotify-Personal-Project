@@ -1,2 +1,10 @@
-package com.genspark.martintorrey.spotifytestappapi.repository;public interface SongRepository {
+package com.genspark.martintorrey.spotifytestappapi.repository;
+
+import com.genspark.martintorrey.spotifytestappapi.entity.SongEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface SongRepository extends JpaRepository<SongEntity,Long> {
+
 }
