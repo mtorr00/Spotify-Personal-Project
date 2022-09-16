@@ -10,4 +10,6 @@ public class Song {
     private String songName;
     private String albumName;
     private String artistName;
+    private String spotId;
+    private String spotImageUrl;
 }

@@ -17,4 +17,6 @@ public class SongEntity {
     private String songName;
     private String albumName;
     private String artistName;
+    private String spotId;
+    private String spotImageUrl;
 }

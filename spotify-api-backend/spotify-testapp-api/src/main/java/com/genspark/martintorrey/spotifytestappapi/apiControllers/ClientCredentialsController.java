@@ -5,20 +5,20 @@ import org.apache.hc.core5.http.ParseException;
 import se.michaelthelin.spotify.SpotifyApi;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import se.michaelthelin.spotify.model_objects.credentials.ClientCredentials;
-import se.michaelthelin.spotify.model_objects.specification.ArtistSimplified;
-import se.michaelthelin.spotify.model_objects.specification.Paging;
-import se.michaelthelin.spotify.model_objects.specification.Track;
+import se.michaelthelin.spotify.model_objects.specification.*;
 import se.michaelthelin.spotify.requests.authorization.client_credentials.ClientCredentialsRequest;
 import se.michaelthelin.spotify.requests.data.search.simplified.SearchTracksRequest;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 
 public class ClientCredentialsController {
-    private static final String clientId = "";
-    private static final String clientSecret = "";
+    private static final String clientId = "8efae0f31d034d14a59ba0083db7f6f2";
+    private static final String clientSecret = "75921dd12f80460bbff9f21a37c41a7e";
 
     private static final SpotifyApi spotifyApi = new SpotifyApi.Builder()
             .setClientId(clientId)
@@ -67,12 +67,16 @@ public class ClientCredentialsController {
             System.out.println("Total: " + trackPaging.getTotal());
             Track[] trackArray = trackPaging.getItems();
             Track track = trackArray[0];
+            System.out.println(track);
             Song song = new Song();
             song.setSongName(track.getName());
             song.setAlbumName(track.getAlbum().getName());
             ArtistSimplified[] artists = track.getArtists();
             ArtistSimplified firstArtists = artists[0];
             song.setArtistName(firstArtists.getName());
+            song.setSpotId(track.getId());
+            Image[] images = track.getAlbum().getImages();
+            song.setSpotImageUrl(images[0].getUrl());
             System.out.println(song);
         } catch (IOException | SpotifyWebApiException | ParseException e) {
             System.out.println("Error: " + e.getMessage());

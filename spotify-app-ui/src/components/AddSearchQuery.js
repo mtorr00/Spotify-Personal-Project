@@ -7,6 +7,8 @@ const AddSearchQuery = () => {
         songName:"",
         artistName:"",
         albumName:"",
+        spotId:"",
+        spotImageUrl:"",
     })
 
   return (
